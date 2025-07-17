@@ -63,6 +63,20 @@ export default function App() {
           <ExportPDF chartRef={chartRef} tagsRef={tagsRef} verdictRef={verdictRef} />
         </>
       )}
+
+<footer className="mt-12 text-center text-sm text-gray-500">
+  Criado por{' '}
+  <a
+    href="https://www.linkedin.com/in/fernandobf/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-600 hover:underline"
+  >
+    fernandobf
+  </a>
+</footer>
+
+
     </div>
   );
 }
