@@ -35,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto h-full flex flex-col">
       <h1 className="text-3xl font-bold mb-6 text-center">Tech CV Analyzer</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -64,7 +64,7 @@ export default function App() {
         </>
       )}
 
-<footer className="mt-12 text-center text-sm text-gray-500">
+<footer className="mt-12 text-center text-sm text-gray-500 mt-auto">
   Criado por{' '}
   <a
     href="https://www.linkedin.com/in/fernandobf/"
