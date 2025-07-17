@@ -1,4 +1,4 @@
-// components/SkillChart.jsx
+// components/SkillChart.tsx
 
 import { Bar } from 'react-chartjs-2';
 import {
@@ -15,10 +15,23 @@ import { getColorForArea } from '../utils/areaColors';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default function SkillChart({ skillsWithCount = [] }) {
+type Skill = {
+  skill: string;
+  count: number;
+  area: string;
+};
+
+type SkillChartProps = {
+  skillsWithCount: Skill[];
+};
+
+export default function SkillChart({ skillsWithCount = [] }: SkillChartProps) {
   const validSkills = Array.isArray(skillsWithCount) ? skillsWithCount : [];
 
-  const topSkills = [...validSkills].sort((a, b) => b.count - a.count).slice(0, 10);
+  const topSkills = [...validSkills]
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
   const labelsTop = topSkills.map(({ skill }) => skill);
   const dataValuesTop = topSkills.map(({ count }) => count);
   const backgroundColors = topSkills.map(({ area }) => getColorForArea(area));
@@ -35,7 +48,7 @@ export default function SkillChart({ skillsWithCount = [] }) {
   };
 
   const options = {
-    indexAxis: 'y',
+    indexAxis: 'y' as const,
     responsive: true,
     plugins: {
       legend: { display: false },

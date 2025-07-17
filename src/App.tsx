@@ -11,8 +11,8 @@ import { prepararTexto } from './utils/textUtils';
 
 type Skill = {
   skill: string;
-  count: number | any; // ajuste para o tipo correto se souber, pode ser number
-  area: string | any;  // ajuste para o tipo correto se souber
+  count: number;
+  area: string;
 };
 
 export default function App() {
@@ -29,10 +29,7 @@ export default function App() {
     setText(textoLimpo);
 
     const result = parseText(textoLimpo) || { skills: [] };
-    console.log("Resultado do parseText:", result);
-    const extractedSkills = Array.isArray(result.skills) ? result.skills : [];
-    console.log("Skills extraídas:", extractedSkills);
-
+    const extractedSkills = Array.isArray(result.skills) ? (result.skills as Skill[]) : [];
     setSkills(extractedSkills);
     setVeredito(determinarPerfil(extractedSkills));
   };

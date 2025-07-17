@@ -1,8 +1,19 @@
-// components/TagCloud.jsx
+// components/TagCloud.tsx
+
 import React from 'react';
 import { getColorForArea } from '../utils/areaColors';
 
-export default function TagCloud({ skills = [] }) {
+type Skill = {
+  skill: string;
+  count: number;
+  area: string;
+};
+
+type TagCloudProps = {
+  skills: Skill[];
+};
+
+export default function TagCloud({ skills = [] }: TagCloudProps) {
   if (!skills.length) return null;
 
   const max = Math.max(...skills.map(s => s.count));
