@@ -1,7 +1,27 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "extends": "./tsconfig.base.json", // se você tiver um base, senão remova essa linha
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,               // permite JS no projeto
+    "checkJs": false,              // não checa JS puro
+    "jsx": "react-jsx",            // React 17+ JSX transform
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src",
+    "src/types"  // pasta onde você vai colocar seus arquivos .d.ts personalizados
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
   ]
 }
