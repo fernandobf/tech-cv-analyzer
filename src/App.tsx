@@ -9,23 +9,30 @@ import { parseText } from './utils/parseText';
 import { determinarPerfil } from './utils/perfilUtils';
 import { prepararTexto } from './utils/textUtils';
 
-export default function App() {
-  const [text, setText] = useState('');
-  const [skills, setSkills] = useState([]);
-  const [veredito, setVeredito] = useState('');
-  const chartRef = useRef(null);
-  const verdictRef = useRef(null);
-  const tagsRef = useRef(null);
+type Skill = {
+  skill: string;
+  count: number | any; // ajuste para o tipo correto se souber, pode ser number
+  area: string | any;  // ajuste para o tipo correto se souber
+};
 
-  const handleTextExtracted = (extractedText) => {
+export default function App() {
+  const [text, setText] = useState<string>('');
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [veredito, setVeredito] = useState<string>('');
+  const chartRef = useRef<HTMLDivElement>(null);
+  const verdictRef = useRef<HTMLDivElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
+
+  const handleTextExtracted = (extractedText: string) => {
     const textoLimpo = prepararTexto(extractedText);
-      console.log("Texto limpo:", textoLimpo);
+    console.log("Texto limpo:", textoLimpo);
     setText(textoLimpo);
 
     const result = parseText(textoLimpo) || { skills: [] };
     console.log("Resultado do parseText:", result);
     const extractedSkills = Array.isArray(result.skills) ? result.skills : [];
-  console.log("Skills extraídas:", extractedSkills);
+    console.log("Skills extraídas:", extractedSkills);
+
     setSkills(extractedSkills);
     setVeredito(determinarPerfil(extractedSkills));
   };
@@ -48,11 +55,9 @@ export default function App() {
             Perfil detectado: <strong>{veredito}</strong>
           </div>
 
-
           <div ref={tagsRef}>
             <SkillTags skills={skills} />
           </div>
-
 
           <div ref={chartRef}>
             <SkillChart skillsWithCount={skills} />

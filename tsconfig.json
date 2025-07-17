@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.base.json", // se você tiver um base, senão remova essa linha
   "compilerOptions": {
     "target": "es2017",
     "module": "esnext",
