@@ -4,6 +4,7 @@ import FileUploader from './components/FileUploader';
 import SkillTags from './components/SkillTags';
 import SkillChart from './components/SkillChart';
 import ExportPDF from './components/ExportPDF';
+import { trackEvent } from './utils/ga';
 
 import { parseText } from './utils/parseText';
 import { determinarPerfil } from './utils/perfilUtils';
@@ -70,6 +71,13 @@ export default function App() {
     href="https://www.linkedin.com/in/fernandobf/"
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() => {
+      trackEvent('click_linkedin', {
+        event_category: 'engagement',
+        event_label: 'Rodapé - LinkedIn',
+        value: 1,
+      });
+    }} 
     className="text-blue-600 hover:underline"
   >
     fernandobf
