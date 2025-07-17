@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { sendGAEvent } from '../utils/analytics';
 
 export default function TextInput({ onExtractText }) {  // mudou aqui
   const [value, setValue] = useState('');
 
   const handleSubmit = () => {
+    sendGAEvent("analisar_texto", "Interação", "Texto colado manualmente");
     if (value.trim()) onExtractText(value);  // aqui usa onExtractText
   };
 

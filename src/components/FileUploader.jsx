@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?worker';
 import { prepararTexto } from '../utils/textUtils';
+import { sendGAEvent } from '../utils/analytics';
 
 pdfjsLib.GlobalWorkerOptions.workerPort = new pdfWorker();
 
@@ -11,6 +12,8 @@ export default function FileUploader({ onExtractText }) {
   const handleFile = async (event) => {
     const file = event.target.files[0];
     if (!file || file.type !== 'application/pdf') return;
+
+    sendGAEvent("upload_cv", "Interação", "Upload via PDF");
 
     const reader = new FileReader();
     reader.onload = async function () {
